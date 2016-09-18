@@ -88,4 +88,9 @@ alias cat='colorize_via_pygmentize'
 alias cpr="rsync-copy"
 alias mvr="rsync-move"
 alias extract="unarchive"
+alias shutd='sudo shutdown -P now'
+alias trim='sudo fstrim -v /'
+alias pw='apg -a 1 -m 16 -x 32 -c /dev/urandom'
+alias randhex='apg -a 1 -M nc -n 3 -m 26 -E GHIJKLMNOPQRSTUVWXYZ'
+
 
