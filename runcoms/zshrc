@@ -41,3 +41,51 @@ unsetopt autocd beep extendedglob notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
+# Functions:
+# ls after cd
+function chpwd() {
+    emulate -L zsh
+    ls
+}
+
+# grep ps output with 'psgrep'
+psgrep() {
+    if [ ! -z $1 ]; then
+        ps aux | sed -e '1b' -e "/$1/!d"
+    else
+        echo "What process are you looking for?"
+    fi
+}
+
+# colorize output, taken from oh-my-zsh
+colorize_via_pygmentize() {
+    if [ ! -x "$(which pygmentize)" ]; then
+        echo "package \'pygmentize\' is not installed!"
+        return -1
+    fi
+
+    if [ $# -eq 0 ]; then
+        pygmentize -g $@
+    fi
+
+    for FNAME in $@
+    do
+        filename=$(basename "$FNAME")
+        lexer=`pygmentize -N \"$filename\"`
+        if [ "Z$lexer" != "Ztext" ]; then
+            pygmentize -l $lexer "$FNAME"
+        else
+            pygmentize -g "$FNAME"
+        fi
+    done
+}
+
+
+# aliases:
+alias py='python3 -ic "from math import *"'
+alias cl="clear"
+alias cat='colorize_via_pygmentize'
+alias cpr="rsync-copy"
+alias mvr="rsync-move"
+alias extract="unarchive"
+
