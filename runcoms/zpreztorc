@@ -28,11 +28,18 @@ zstyle ':prezto:load' pmodule \
   'terminal' \
   'editor' \
   'history' \
-  'directory' \
   'spectrum' \
   'utility' \
   'completion' \
+  'prompt' \
+  'archive' \
+  'command-not-found' \
+  'git' \
+  'rsync' \
+  'syntax-highlighting' \
   'prompt'
+
+#  'directory' \
 
 #
 # Autosuggestions
