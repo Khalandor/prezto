@@ -80,6 +80,27 @@ colorize_via_pygmentize() {
     done
 }
 
+# web search from oh-my-zsh simplified for google
+function web_search() {
+  emulate -L zsh
+
+  # search or go to main page depending on number of arguments passed
+  if [[ $# -gt 0 ]]; then
+    # build search url:
+    # join arguments passed with '+', then append to search engine URL
+    url="https://encrypted.google.com/search?q=${(j:+:)@[1,-1]}"
+  else
+    # build main page url:
+    # split by '/', then rejoin protocol (1) and domain (2) parts with '//'
+    url="https://encrypted.google.com/"
+  fi
+
+  xdg-open "$url"
+}
+
+
+alias google='web_search'
+
 
 # aliases:
 alias py='python3 -ic "from math import *"'
